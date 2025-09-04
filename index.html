@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Literacy and Economic Empowerment in Post-Apartheid South Africa</title>
+    <title>Academic Literacy and Economic Empowerment</title>
     <style>
         * {
             margin: 0;
@@ -17,26 +17,30 @@
             color: #ffffff;
             line-height: 1.6;
             min-height: 100vh;
+            padding: 20px;
         }
 
         .page-container {
             display: flex;
             min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 20px;
         }
 
         /* Header styling */
         .header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px;
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 212, 255, 0.3);
-            position: relative;
-            z-index: 100;
+            border-radius: 12px;
+            margin-bottom: 25px;
         }
 
         .main-title {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
             background: linear-gradient(45deg, #00d4ff, #ff00ff, #ffff00);
             background-size: 300% 300%;
@@ -44,37 +48,36 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: gradientShift 3s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            margin-bottom: 8px;
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #e0e0e0;
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         /* Navigation column */
         .nav-column {
-            width: 280px;
+            width: 220px;
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(0, 212, 255, 0.2);
-            padding: 30px 20px;
-            position: relative;
-            overflow-y: auto;
-            height: 100vh;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px 15px;
+            height: fit-content;
             position: sticky;
-            top: 0;
+            top: 20px;
         }
 
         .nav-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #00d4ff;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-align: center;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
         }
 
         .nav-links {
@@ -82,12 +85,12 @@
         }
 
         .nav-item {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .nav-link {
             display: block;
-            padding: 12px 20px;
+            padding: 10px 15px;
             text-decoration: none;
             color: #ffffff;
             border-radius: 8px;
@@ -96,6 +99,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            font-size: 0.9rem;
         }
 
         .nav-link::before {
@@ -114,71 +118,67 @@
 
         .nav-link:hover {
             transform: translateX(5px);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
         }
 
         .nav-link:hover::before {
             opacity: 0.7;
         }
 
-        /* Content column */
-        .content-column {
+        /* Content grid */
+        .content-grid {
             flex: 1;
-            padding: 40px;
-            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
-        .content-section {
-            margin-bottom: 80px;
-            position: relative;
-        }
-
-        .paragraph {
+        .card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 40px;
+            border-radius: 12px;
+            padding: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            height: fit-content;
         }
 
-        .paragraph:hover {
+        .card:hover {
             border-color: rgba(255, 0, 255, 0.5);
-            box-shadow: 0 12px 40px rgba(255, 0, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(255, 0, 255, 0.2);
             transform: translateY(-5px);
         }
 
-        .paragraph-title {
-            font-size: 2rem;
+        .card-title {
+            font-size: 1.4rem;
             color: #00d4ff;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
         }
 
-        .paragraph-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
+        .card-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
             color: #e0e0e0;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
         /* Image styling */
-        .paragraph-image {
+        .card-image {
             width: 100%;
-            height: 250px;
+            height: 160px;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 8px;
             border: 2px solid rgba(0, 212, 255, 0.3);
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
             transition: all 0.4s ease;
-            margin: 20px 0;
+            margin-bottom: 12px;
         }
 
-        .paragraph-image:hover {
+        .card-image:hover {
             border-color: rgba(255, 0, 255, 0.6);
-            box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
             transform: scale(1.02);
         }
 
@@ -186,17 +186,18 @@
             text-align: center;
             font-style: italic;
             color: #a0a0a0;
-            margin-top: -10px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
         }
 
         .footer {
             text-align: center;
-            margin-top: 60px;
-            padding: 30px;
+            margin-top: 40px;
+            padding: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             color: #888;
+            font-size: 0.9rem;
+            grid-column: 1 / -1;
         }
 
         @keyframes gradientShift {
@@ -204,51 +205,51 @@
             50% { background-position: 100% 50%; }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
             .page-container {
                 flex-direction: column;
             }
             
             .nav-column {
                 width: 100%;
-                height: auto;
                 position: relative;
-                border-right: none;
-                border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-            }
-            
-            .content-column {
-                padding: 20px;
+                margin-bottom: 20px;
             }
             
             .main-title {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
             }
             
-            .paragraph {
-                padding: 25px;
+            .card {
+                padding: 15px;
             }
             
-            .paragraph-title {
-                font-size: 1.5rem;
+            .card-title {
+                font-size: 1.2rem;
             }
             
-            .paragraph-image {
-                height: 200px;
+            .card-image {
+                height: 140px;
             }
         }
 
         /* Active section highlighting */
         .section-active {
             border-left: 4px solid #ff00ff;
-            padding-left: 36px; /* 40px - 4px border */
+            padding-left: 11px; /* 15px - 4px border */
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <h1 class="main-title">Academic Literacy and Economic Empowerment in Post-Apartheid South Africa</h1>
-        <p class="subtitle">Exploring the relationship between education access and economic opportunities since the end of apartheid</p>
+        <h1 class="main-title">Academic Literacy and Economic Empowerment</h1>
+        <p class="subtitle">Exploring the relationship between education access and economic opportunities in post-apartheid South Africa</p>
     </header>
 
     <div class="page-container">
@@ -259,55 +260,46 @@
                 <li class="nav-item"><a href="#educational-attainment" class="nav-link">Educational Attainment</a></li>
                 <li class="nav-item"><a href="#challenges" class="nav-link">Challenges in Empowerment</a></li>
                 <li class="nav-item"><a href="#broader-literacy" class="nav-link">Broader Literacy</a></li>
-                <li class="nav-item"><a href="#policy-implications" class="nav-link">Policy Implications</a></li>
             </ul>
         </nav>
 
-        <main class="content-column">
-            <section class="content-section">
-                <div id="introduction" class="paragraph">
-                    <p class="paragraph-text">Academic literacy and economic empowerment are interconnected but not always fully aligned in post-apartheid South Africa. While educational attainment has significantly increased since apartheid, and this has positively affected wage dynamics and economic opportunities, persistent inequalities and challenges in quality and access remain that hinder full economic empowerment through academic literacy.</p>
-                    
-                    <img src="https://raw.githubusercontent.com/oeybers-cpu/AL_econ/main/job%20needed.png" alt="Education and employment relationship" class="paragraph-image">
-                    <p class="image-caption">Figure 1: The relationship between education levels and employment opportunities</p>
-                </div>
+        <div class="content-grid">
+            <div id="introduction" class="card">
+                <h2 class="card-title">Introduction</h2>
+                <p class="card-text">Academic literacy and economic empowerment are interconnected but not always fully aligned in post-apartheid South Africa. While educational attainment has significantly increased since apartheid, persistent inequalities and challenges in quality and access remain.</p>
+                
+                <img src="https://raw.githubusercontent.com/oeybers-cpu/AL_econ/main/job%20needed.png" alt="Education and employment relationship" class="card-image">
+                <p class="image-caption">Figure 1: Education levels and employment opportunities</p>
+            </div>
 
-                <div id="educational-attainment" class="paragraph">
-                    <h2 class="paragraph-title">Educational Attainment and Economic Returns</h2>
-                    <p class="paragraph-text">Since the end of apartheid, South Africa has seen a substantial rise in educational levels, especially at the secondary and tertiary stages. This rise has narrowed educational inequality and increased the economic returns to higher education, with tertiary education showing the strongest positive impact on earnings and economic participation. However, returns to primary and secondary education have diminished, which complicates the direct translation of basic academic literacy into economic empowerment for many.</p>
-                    
-                    <img src="https://raw.githubusercontent.com/oeybers-cpu/AL_econ/main/job%20needed2.png" alt="Educational attainment statistics" class="paragraph-image">
-                    <p class="image-caption">Figure 2: Educational attainment trends and economic returns in South Africa</p>
-                </div>
+            <div id="educational-attainment" class="card">
+                <h2 class="card-title">Educational Attainment</h2>
+                <p class="card-text">Since the end of apartheid, South Africa has seen a substantial rise in educational levels, especially at secondary and tertiary stages. This has increased economic returns to higher education, though returns to basic education have diminished.</p>
+                
+                <img src="https://raw.githubusercontent.com/oeybers-cpu/AL_econ/main/job%20needed2.png" alt="Educational attainment statistics" class="card-image">
+                <p class="image-caption">Figure 2: Educational attainment trends and economic returns</p>
+            </div>
 
-                <div id="challenges" class="paragraph">
-                    <h2 class="paragraph-title">Challenges in Economic Empowerment via Literacy</h2>
-                    <p class="paragraph-text">Despite gains in education, South Africa faces structural barriers that limit the economic empowerment of many, particularly black South Africans. These barriers include unequal school funding, poor school resources, and curriculum deficiencies dating back to apartheid's legacy. This results in many learners, especially from disadvantaged backgrounds, not gaining sufficient academic or economic literacy to access skilled labor markets or entrepreneurial opportunities effectively.</p>
-                    
-                    <img src="https://raw.githubusercontent.com/oeybers-cpu/AL_econ/main/job%20needed3.png" alt="Structural barriers visualization" class="paragraph-image">
-                    <p class="image-caption">Figure 3: Structural barriers to economic empowerment through education</p>
-                </div>
+            <div id="challenges" class="card">
+                <h2 class="card-title">Challenges in Empowerment</h2>
+                <p class="card-text">Despite gains in education, South Africa faces structural barriers that limit economic empowerment. These include unequal school funding, poor resources, and curriculum deficiencies dating back to apartheid's legacy.</p>
+                
+                <img src="https://raw.githubusercontent.com/oeybers-cpu/AL_econ/main/job%20needed3.png" alt="Structural barriers visualization" class="card-image">
+                <p class="image-caption">Figure 3: Structural barriers to economic empowerment</p>
+            </div>
 
-                <div id="broader-literacy" class="paragraph">
-                    <h2 class="paragraph-title">Broader Literacy and Economic Inclusion</h2>
-                    <p class="paragraph-text">Studies suggest that beyond basic academic literacy, broader forms of literacy—including financial, economic, and technological literacy—are crucial for meaningful economic empowerment. These literacies equip individuals to make better economic decisions, engage in sustainable economic activities, and access greater income-generating opportunities. There are calls for integrated literacy campaigns and economic education within formal and informal education sectors to address persistent unemployment and poverty.</p>
-                    
-                    <img src="https://raw.githubusercontent.com/oeybers-cpu/AL_econ/main/job%20needed4.png" alt="Literacy and economic inclusion" class="paragraph-image">
-                    <p class="image-caption">Figure 4: The relationship between different literacy types and economic inclusion</p>
-                </div>
-
-                <div id="policy-implications" class="paragraph">
-                    <h2 class="paragraph-title">Policy and Institutional Implications</h2>
-                    <p class="paragraph-text">The South African policy focus has included expanding access to quality higher education, financial aid, and labor-market programs to foster economic empowerment. However, the uneven quality of basic education and the labor market's structure continue to limit the alignment between academic literacy acquisition and economic empowerment for large sections of the population.</p>
-                    
-                    <!-- No image for this section as we only have 4 images -->
-                </div>
-            </section>
+            <div id="broader-literacy" class="card">
+                <h2 class="card-title">Broader Literacy</h2>
+                <p class="card-text">Beyond academic literacy, broader forms including financial, economic, and technological literacy are crucial for meaningful economic empowerment. These equip individuals to make better economic decisions and access income-generating opportunities.</p>
+                
+                <img src="https://raw.githubusercontent.com/oeybers-cpu/AL_econ/main/job%20needed4.png" alt="Literacy and economic inclusion" class="card-image">
+                <p class="image-caption">Figure 4: Literacy types and economic inclusion</p>
+            </div>
 
             <footer class="footer">
-                <p>&copy; 2025 Dr Oscar Eybers. All rights reserved.</p>
+                <p>&copy; 2024 Academic Research Project. All rights reserved.</p>
             </footer>
-        </main>
+        </div>
     </div>
 
     <script>
@@ -329,7 +321,7 @@
             });
 
             // Section highlighting when scrolling
-            const sections = document.querySelectorAll('.paragraph');
+            const sections = document.querySelectorAll('.card');
             const navLinks = document.querySelectorAll('.nav-link');
             
             function highlightSection() {
@@ -355,9 +347,9 @@
             window.addEventListener('scroll', highlightSection);
             highlightSection(); // Initialize on load
 
-            // Smooth reveal animation for paragraphs
-            const paragraphs = document.querySelectorAll('.paragraph');
-            const images = document.querySelectorAll('.paragraph-image');
+            // Smooth reveal animation for cards
+            const cards = document.querySelectorAll('.card');
+            const images = document.querySelectorAll('.card-image');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -368,17 +360,17 @@
                 });
             }, { threshold: 0.1 });
 
-            paragraphs.forEach(paragraph => {
-                paragraph.style.opacity = '0';
-                paragraph.style.transform = 'translateY(30px)';
-                paragraph.style.transition = 'all 0.6s ease';
-                observer.observe(paragraph);
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+                observer.observe(card);
             });
 
             images.forEach(image => {
                 image.style.opacity = '0';
-                image.style.transform = 'translateY(30px)';
-                image.style.transition = 'all 0.8s ease';
+                image.style.transform = 'translateY(20px)';
+                image.style.transition = 'all 0.6s ease';
                 observer.observe(image);
             });
 
