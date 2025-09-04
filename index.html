@@ -19,20 +19,24 @@
             min-height: 100vh;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .page-container {
+            display: flex;
+            min-height: 100vh;
         }
 
+        /* Header styling */
         .header {
             text-align: center;
-            margin-bottom: 60px;
-            padding: 40px 0;
+            padding: 30px 20px;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            z-index: 100;
         }
 
         .main-title {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             font-weight: bold;
             background: linear-gradient(45deg, #00d4ff, #ff00ff, #ffff00);
             background-size: 300% 300%;
@@ -41,12 +45,87 @@
             background-clip: text;
             animation: gradientShift 3s ease-in-out infinite;
             text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation column */
+        .nav-column {
+            width: 280px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 30px 20px;
+            position: relative;
+            overflow-y: auto;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 15px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #ffffff;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #ffff00, #00d4ff);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .nav-link:hover::before {
+            opacity: 0.7;
+        }
+
+        /* Content column */
+        .content-column {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
         }
 
         .content-section {
@@ -103,37 +182,6 @@
             box-shadow: 0 20px 60px rgba(255, 0, 255, 0.4);
         }
 
-        .references {
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px solid rgba(255, 255, 0, 0.4);
-            border-radius: 20px;
-            padding: 50px;
-            margin-top: 80px;
-            backdrop-filter: blur(15px);
-        }
-
-        .references-title {
-            font-size: 2.5rem;
-            color: #ffff00;
-            text-align: center;
-            margin-bottom: 40px;
-            text-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
-        }
-
-        .reference-item {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid #00d4ff;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .reference-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-left-color: #ff00ff;
-        }
-
         .footer {
             text-align: center;
             margin-top: 60px;
@@ -142,9 +190,30 @@
             color: #888;
         }
 
-        @media (max-width: 768px) {
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @media (max-width: 900px) {
+            .page-container {
+                flex-direction: column;
+            }
+            
+            .nav-column {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            }
+            
+            .content-column {
+                padding: 20px;
+            }
+            
             .main-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             .paragraph {
@@ -154,44 +223,36 @@
             .paragraph-title {
                 font-size: 1.5rem;
             }
-            
-            .references {
-                padding: 30px;
-            }
         }
 
-        .glow-effect {
-            position: relative;
-        }
-
-        .glow-effect::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #00d4ff, #ff00ff, #ffff00, #00d4ff);
-            border-radius: inherit;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .glow-effect:hover::before {
-            opacity: 0.7;
+        /* Active section highlighting */
+        .section-active {
+            border-left: 4px solid #ff00ff;
+            padding-left: 36px; /* 40px - 4px border */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1 class="main-title">Academic Literacy and Economic Empowerment in Post-Apartheid South Africa</h1>
-        </header>
+    <header class="header">
+        <h1 class="main-title">Academic Literacy and Economic Empowerment in Post-Apartheid South Africa</h1>
+        <p class="subtitle">Exploring the relationship between education access and economic opportunities since the end of apartheid</p>
+    </header>
 
-        <main>
+    <div class="page-container">
+        <nav class="nav-column">
+            <h2 class="nav-title">Navigation</h2>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="#introduction" class="nav-link">Introduction</a></li>
+                <li class="nav-item"><a href="#educational-attainment" class="nav-link">Educational Attainment</a></li>
+                <li class="nav-item"><a href="#challenges" class="nav-link">Challenges in Empowerment</a></li>
+                <li class="nav-item"><a href="#broader-literacy" class="nav-link">Broader Literacy</a></li>
+                <li class="nav-item"><a href="#policy-implications" class="nav-link">Policy Implications</a></li>
+            </ul>
+        </nav>
+
+        <main class="content-column">
             <section class="content-section">
-                <div class="paragraph glow-effect">
+                <div id="introduction" class="paragraph">
                     <p class="paragraph-text">Academic literacy and economic empowerment are interconnected but not always fully aligned in post-apartheid South Africa. While educational attainment has significantly increased since apartheid, and this has positively affected wage dynamics and economic opportunities, persistent inequalities and challenges in quality and access remain that hinder full economic empowerment through academic literacy.</p>
                 </div>
 
@@ -199,7 +260,7 @@
                     <img src="images/paragraph1.png" alt="Academic literacy and economic empowerment interconnectedness" class="content-image">
                 </div>
 
-                <div class="paragraph glow-effect">
+                <div id="educational-attainment" class="paragraph">
                     <h2 class="paragraph-title">Educational Attainment and Economic Returns</h2>
                     <p class="paragraph-text">Since the end of apartheid, South Africa has seen a substantial rise in educational levels, especially at the secondary and tertiary stages. This rise has narrowed educational inequality and increased the economic returns to higher education, with tertiary education showing the strongest positive impact on earnings and economic participation. However, returns to primary and secondary education have diminished, which complicates the direct translation of basic academic literacy into economic empowerment for many.</p>
                 </div>
@@ -208,7 +269,7 @@
                     <img src="images/paragraph2.png" alt="Educational attainment and economic returns in South Africa" class="content-image">
                 </div>
 
-                <div class="paragraph glow-effect">
+                <div id="challenges" class="paragraph">
                     <h2 class="paragraph-title">Challenges in Economic Empowerment via Literacy</h2>
                     <p class="paragraph-text">Despite gains in education, South Africa faces structural barriers that limit the economic empowerment of many, particularly black South Africans. These barriers include unequal school funding, poor school resources, and curriculum deficiencies dating back to apartheid's legacy. This results in many learners, especially from disadvantaged backgrounds, not gaining sufficient academic or economic literacy to access skilled labor markets or entrepreneurial opportunities effectively.</p>
                 </div>
@@ -217,7 +278,7 @@
                     <img src="images/paragraph3.png" alt="Structural barriers to economic empowerment" class="content-image">
                 </div>
 
-                <div class="paragraph glow-effect">
+                <div id="broader-literacy" class="paragraph">
                     <h2 class="paragraph-title">Broader Literacy and Economic Inclusion</h2>
                     <p class="paragraph-text">Studies suggest that beyond basic academic literacy, broader forms of literacy—including financial, economic, and technological literacy—are crucial for meaningful economic empowerment. These literacies equip individuals to make better economic decisions, engage in sustainable economic activities, and access greater income-generating opportunities. There are calls for integrated literacy campaigns and economic education within formal and informal education sectors to address persistent unemployment and poverty.</p>
                 </div>
@@ -226,7 +287,7 @@
                     <img src="images/paragraph4.png" alt="Broader literacy and economic inclusion" class="content-image">
                 </div>
 
-                <div class="paragraph glow-effect">
+                <div id="policy-implications" class="paragraph">
                     <h2 class="paragraph-title">Policy and Institutional Implications</h2>
                     <p class="paragraph-text">The South African policy focus has included expanding access to quality higher education, financial aid, and labor-market programs to foster economic empowerment. However, the uneven quality of basic education and the labor market's structure continue to limit the alignment between academic literacy acquisition and economic empowerment for large sections of the population.</p>
                 </div>
@@ -236,43 +297,57 @@
                 </div>
             </section>
 
-            <section class="references">
-                <h2 class="references-title">References</h2>
-                <div class="reference-item">
-                    <p>Branson, N., Hofmeyr, C., & Lam, D. (2014). Progress through school and the determinants of school dropout in South Africa. <em>Development Southern Africa</em>, 31(1), 106-126.</p>
-                </div>
-                <div class="reference-item">
-                    <p>Case, A., & Deaton, A. (1999). School inputs and educational outcomes in South Africa. <em>The Quarterly Journal of Economics</em>, 114(3), 1047-1084.</p>
-                </div>
-                <div class="reference-item">
-                    <p>Keswell, M. (2004). Education and racial inequality in post-apartheid South Africa. <em>Santa Fe Institute Working Paper</em>, 04-02-006.</p>
-                </div>
-                <div class="reference-item">
-                    <p>Lam, D., Ardington, C., & Leibbrandt, M. (2011). Schooling as a lottery: Racial differences in school advancement in urban South Africa. <em>Journal of Development Economics</em>, 95(2), 121-136.</p>
-                </div>
-                <div class="reference-item">
-                    <p>Moll, P. G. (1998). Primary schooling, cognitive skills and wages in South Africa. <em>Economica</em>, 65(258), 263-284.</p>
-                </div>
-                <div class="reference-item">
-                    <p>Ranchhod, V., & Finn, A. (2016). Estimating the short run effects of South Africa's Employment Tax Incentive on youth employment probabilities using a difference-in-differences approach. <em>South African Journal of Economics</em>, 84(2), 199-216.</p>
-                </div>
-                <div class="reference-item">
-                    <p>Van der Berg, S. (2007). Apartheid's enduring legacy: Inequalities in education. <em>Journal of African Economies</em>, 16(5), 849-880.</p>
-                </div>
-                <div class="reference-item">
-                    <p>Yamauchi, F. (2011). School quality, clustering and government subsidy in post-apartheid South Africa. <em>Economics of Education Review</em>, 30(1), 146-156.</p>
-                </div>
-            </section>
+            <footer class="footer">
+                <p>&copy; 2024 Academic Research Project. All rights reserved.</p>
+            </footer>
         </main>
-
-        <footer class="footer">
-            <p>&copy; 2024 Academic Research Project. All rights reserved.</p>
-        </footer>
     </div>
 
     <script>
-        // Add smooth scrolling and interactive effects
         document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling for navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Section highlighting when scrolling
+            const sections = document.querySelectorAll('.paragraph');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            function highlightSection() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.parentElement.classList.remove('section-active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.parentElement.classList.add('section-active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', highlightSection);
+            highlightSection(); // Initialize on load
+
             // Smooth reveal animation for paragraphs
             const paragraphs = document.querySelectorAll('.paragraph');
             const images = document.querySelectorAll('.content-image');
