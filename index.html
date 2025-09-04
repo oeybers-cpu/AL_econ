@@ -245,55 +245,74 @@
             padding-left: 11px; /* 15px - 4px border */
         }
         
-        /* References specific styles */
-        .reference-item {
-            background: rgba(0, 30, 60, 0.4);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-left: 3px solid #00d4ff;
-            transition: all 0.3s ease;
+        /* Updated References specific styles */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
         }
         
-        .reference-item:hover {
-            background: rgba(0, 40, 80, 0.6);
-            transform: translateX(3px);
+        .reference-tab {
+            display: block;
+            padding: 20px;
+            background: rgba(10, 10, 30, 0.5);
+            border-radius: 10px;
+            text-decoration: none;
+            color: #ffffff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+        }
+        
+        .reference-tab::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #ffff00, #00d4ff);
+            background-size: 300% 300%;
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: gradientShift 4s ease infinite;
+        }
+        
+        .reference-tab:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+        
+        .reference-tab:hover::before {
+            opacity: 0.7;
         }
         
         .reference-title {
             font-weight: bold;
-            color: #00d4ff;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        
-        .reference-author {
-            color: #a0d0ff;
-            font-style: italic;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .reference-excerpt {
-            color: #e0e0e0;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 1rem;
             margin-bottom: 10px;
+            line-height: 1.4;
         }
         
-        .reference-link {
+        .reference-link-text {
             display: inline-block;
+            margin-top: 15px;
+            padding: 5px 12px;
             background: rgba(0, 100, 200, 0.3);
+            border-radius: 15px;
+            font-size: 0.8rem;
             color: #00d4ff;
-            padding: 5px 10px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
             border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
         }
         
-        .reference-link:hover {
+        .reference-tab:hover .reference-link-text {
             background: rgba(0, 150, 255, 0.4);
             box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
@@ -351,35 +370,25 @@
                 <p class="image-caption">Figure 4: Literacy types and economic inclusion</p>
             </div>
 
-            <!-- Added References section -->
+            <!-- Updated References section -->
             <div id="references" class="card">
                 <h2 class="card-title">Key References</h2>
                 
-                <div class="reference-item">
-                    <div class="reference-title">Empowering marginalised students in access programmes: A gendered and Afrocentric approach to a decolonised academic literacy curriculum</div>
-                    <div class="reference-author">Linda Sparks, University of the Free State</div>
-                    <div class="reference-excerpt">
-                        This research addresses the inequity of Western/male-dominated texts in academic literacy curricula. It proposes a gendered and Afrocentric approach using Ubuntu values to create a learning environment that supports diversity, encouraging and empowering marginalized students. The study demonstrates how academic literacy can be used to decolonize curricula while improving students' reading proficiency and self-efficacy.
-                    </div>
-                    <a href="https://scielo.org.za/scielo.php?script=sci_arttext&pid=S2310-71032024000300006" target="_blank" class="reference-link">Read Article</a>
-                </div>
-                
-                <div class="reference-item">
-                    <div class="reference-title">An inclusive African theory of academic literacy</div>
-                    <div class="reference-author">O. Eybers & P. Angu</div>
-                    <div class="reference-excerpt">
-                        This work develops a theoretical framework for academic literacy grounded in African epistemologies and knowledge systems. It challenges Eurocentric models of academic literacy by centering African philosophical traditions, cultural practices, and linguistic diversity. The theory emphasizes how academic literacy development can be connected to identity formation, economic empowerment, and community development within African contexts.
-                    </div>
-                    <a href="https://www.researchgate.net/publication/388081527_An_Inclusive_African_Theory_of_Academic_Literacy" target="_blank" class="reference-link">Read Article</a>
-                </div>
-                
-                <div class="reference-item">
-                    <div class="reference-title">Financial Literacy and Economic Empowerment in Africa</div>
-                    <div class="reference-author">Girl Power Talk</div>
-                    <div class="reference-excerpt">
-                        This resource explores the critical connection between financial literacy and economic empowerment across African communities. It highlights how financial education can transform economic outcomes, particularly for women and youth. The article examines successful initiatives that have improved financial inclusion and discusses how academic literacy skills intersect with financial capabilities to create pathways for economic advancement.
-                    </div>
-                    <a href="https://girlpowertalk.com/financial-literacy-and-economic-empowerment-in-africa/" target="_blank" class="reference-link">Read Article</a>
+                <div class="references-grid">
+                    <a href="https://scielo.org.za/scielo.php?script=sci_arttext&pid=S2310-71032024000300006" target="_blank" class="reference-tab">
+                        <div class="reference-title">Empowering marginalised students in access programmes: A gendered and Afrocentric approach to a decolonised academic literacy curriculum</div>
+                        <span class="reference-link-text">View Article</span>
+                    </a>
+                    
+                    <a href="https://www.researchgate.net/publication/388081527_An_Inclusive_African_Theory_of_Academic_Literacy" target="_blank" class="reference-tab">
+                        <div class="reference-title">An inclusive African theory of academic literacy</div>
+                        <span class="reference-link-text">View Article</span>
+                    </a>
+                    
+                    <a href="https://girlpowertalk.com/financial-literacy-and-economic-empowerment-in-africa/" target="_blank" class="reference-tab">
+                        <div class="reference-title">Financial Literacy and Economic Empowerment in Africa</div>
+                        <span class="reference-link-text">View Article</span>
+                    </a>
                 </div>
             </div>
 
